@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import keras
 
-model_path = "C:\\Users\\JyunmauChan\\Documents\\GitHub\\IMG-REC\\Models\\cifar10_ResNet20v1_model.045.h5"
+model_path = "Models/cifar10_ResNet20v1_model.045.h5"
 
 
 class ImageRecognition(object):
