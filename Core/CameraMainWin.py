@@ -7,13 +7,17 @@ from PySide2.QtGui import QPixmap, QImage
 from PySide2.QtMultimedia import QCamera, QCameraViewfinderSettings, QCameraImageCapture
 from PySide2.QtWidgets import QFileDialog
 
-import ui_cameraWin
+import Qt_Ui.ui_cameraWin as ui_cameraWin
+from Core.ResultWid import ResultWid
+from Core.ImageRecognition import ImageRecognition
 
 
 class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, img_rec: ImageRecognition):
         super(CameraMainWin, self).__init__()
         self.setupUi(self)
+        # 设置图像处理实例
+        self.img_rec = img_rec
         # camera设置
         self.camera = QCamera()
         self.camera.setCaptureMode(QCamera.CaptureViewfinder)
@@ -29,7 +33,7 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
         # 设置图像捕获
         self.capImg = QCameraImageCapture(self.camera)
         self.capImg.setCaptureDestination(QCameraImageCapture.CaptureToBuffer)
-        self.capImg.imageCaptured.connect(self.process_captured_image)
+        self.capImg.imageCaptured.connect(self._process_captured_image)
         # 绑定按钮函数
         self.cameraButton.clicked.connect(self.switch_camera)
         self.captureButton.clicked.connect(self.take_pic)
@@ -48,27 +52,21 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
     def take_pic(self):  # 拍照响应槽函数，照片保存到文件
         self.capImg.capture()
 
-    def process_captured_image(self, requestId, img):
+    def _process_captured_image(self, requestId, img):
         """捕捉到的图像转换成cv::mat"""
-        ptr = img.constBits()
-        mat = np.array(ptr).reshape(img.height(), img.width(), 4)  # 注意这地方通道数一定要填4，否则出错
-        cv2.imshow('captureIMG', mat)
-        cv2.waitKey(0)
-        # todo 这里用观察者模式把图片传给图片处理实例
+        self.img_rec.image_predict(img)
 
     def load_file(self):
         fname, _ = QFileDialog.getOpenFileName(self, '选择图片', 'c:\\', 'Image files(*.jpg *.gif *.png)')
         # self.label.setPixmap(QPixmap(fname))
         qimage = QImage(fname)
-        ptr = qimage.constBits()
-        mat = np.array(ptr).reshape(qimage.height(), qimage.width(), 4)  # 注意这地方通道数一定要填4，否则出错
-        cv2.imshow('captureIMG', mat)
-        cv2.waitKey(0)
-        # todo 这里用观察者模式把图片传给图片处理实例
+        self.img_rec.image_predict(qimage)
 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     W = CameraMainWin()
+    Y = ResultWid()
+    W.reconitionButton.clicked.connect(Y.show)
     W.show()
     sys.exit(app.exec_())
