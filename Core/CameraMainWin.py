@@ -13,11 +13,12 @@ from Core.ImageRecognition import ImageRecognition
 
 
 class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
-    def __init__(self, img_rec: ImageRecognition):
+    def __init__(self, img_rec: ImageRecognition, res_wid: ResultWid):
         super(CameraMainWin, self).__init__()
         self.setupUi(self)
-        # 设置图像处理实例
+        # 设置图像处理实例和跳转实例
         self.img_rec = img_rec
+        self.res_wid = res_wid
         # camera设置
         self.camera = QCamera()
         self.camera.setCaptureMode(QCamera.CaptureViewfinder)
@@ -38,6 +39,7 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
         self.cameraButton.clicked.connect(self.switch_camera)
         self.captureButton.clicked.connect(self.take_pic)
         self.loadButton.clicked.connect(self.load_file)
+        self.reconitionButton.clicked.connect(self.load_path)
 
     def switch_camera(self):
         if not self.cameraOpened:
@@ -61,6 +63,12 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
         # self.label.setPixmap(QPixmap(fname))
         qimage = QImage(fname)
         self.img_rec.image_predict(qimage)
+
+    def load_path(self):
+        dir_path = QFileDialog.getExistingDirectory(self, '选择图片', 'c:\\')
+        self.img_rec.set_images_path(dir_path)
+        self.res_wid.show()
+        self.res_wid.image_predict()
 
 
 if __name__ == '__main__':

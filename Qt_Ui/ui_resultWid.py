@@ -19,28 +19,69 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(400, 300)
-        self.label = QLabel(Form)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(40, 30, 68, 15))
-        self.label_2 = QLabel(Form)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(40, 80, 68, 15))
+        Form.resize(521, 300)
+        self.verticalLayout_2 = QVBoxLayout(Form)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_3 = QLabel(Form)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(40, 130, 68, 15))
-        self.pushButton = QPushButton(Form)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(150, 240, 93, 28))
-        self.cate_label = QLabel(Form)
-        self.cate_label.setObjectName(u"cate_label")
-        self.cate_label.setGeometry(QRect(180, 30, 68, 15))
+        self.label_3.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_2.addWidget(self.label_3)
+
+        self.result_label = QLabel(Form)
+        self.result_label.setObjectName(u"result_label")
+        self.result_label.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_2.addWidget(self.result_label)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.label_4 = QLabel(Form)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_3.addWidget(self.label_4)
+
         self.acc_label = QLabel(Form)
         self.acc_label.setObjectName(u"acc_label")
-        self.acc_label.setGeometry(QRect(180, 80, 68, 15))
-        self.label_6 = QLabel(Form)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(180, 130, 68, 15))
+        self.acc_label.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout_3.addWidget(self.acc_label)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_3)
+
+        self.img_label = QLabel(Form)
+        self.img_label.setObjectName(u"img_label")
+        self.img_label.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout.addWidget(self.img_label)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.pushButton = QPushButton(Form)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout.addWidget(self.pushButton)
+
+
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+
 
         self.retranslateUi(Form)
 
@@ -49,12 +90,11 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"\u7c7b\u522b\uff1a", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"\u7f6e\u4fe1\u5ea6\uff1a", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"TextLabel", None))
-        self.pushButton.setText(QCoreApplication.translate("Form", u"\u786e\u5b9a", None))
-        self.cate_label.setText("")
+        self.label_3.setText(QCoreApplication.translate("Form", u"\u8bc6\u522b\u7ed3\u679c\uff1a", None))
+        self.result_label.setText("")
+        self.label_4.setText(QCoreApplication.translate("Form", u"\u7f6e\u4fe1\u7387\uff1a", None))
         self.acc_label.setText("")
-        self.label_6.setText(QCoreApplication.translate("Form", u"TextLabel", None))
+        self.img_label.setText("")
+        self.pushButton.setText(QCoreApplication.translate("Form", u"\u4e0b\u4e00\u5f20", None))
     # retranslateUi
 

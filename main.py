@@ -9,9 +9,8 @@ from Core.ImageRecognition import ImageRecognition
 def main():
     app = QtWidgets.QApplication(sys.argv)
     I = ImageRecognition()
-    W = CameraMainWin(I)
-    Y = ResultWid()
-    W.reconitionButton.clicked.connect(Y.show)
+    Y = ResultWid(I)
+    W = CameraMainWin(I,Y)
     W.show()
     sys.exit(app.exec_())
 
