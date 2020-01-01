@@ -86,11 +86,11 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u57fa\u4e8e\u6df1\u5ea6\u795e\u7ecf\u7f51\u7edc\u7684\u56fe\u7247\u8bc6\u522b\u7a0b\u5e8f", None))
         self.loadButton.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u8f7d\u672c\u5730\u56fe\u7247", None))
-        self.reconitionButton.setText(QCoreApplication.translate("MainWindow", u"\u8bc6\u522b", None))
+        self.reconitionButton.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u8f7d\u672c\u5730\u56fe\u7247\u6587\u4ef6\u5939", None))
         self.captureButton.setText(QCoreApplication.translate("MainWindow", u"\u62cd\u7167", None))
         self.cameraButton.setText(QCoreApplication.translate("MainWindow", u"\u6253\u5f00\u6444\u50cf\u5934", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"GroupBox", None))
+        self.groupBox.setTitle("")
     # retranslateUi
 
