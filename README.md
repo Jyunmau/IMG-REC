@@ -51,5 +51,5 @@ IMG-REC
 
 ## 作者和版权声明
 本项目采用[MIT协议](https://github.com/Jyunmau/IMG-REC/blob/master/LICENSE)。
-项目程序主逻辑及打包发布由@Jyunmau完成。
-模型设计及训练由@cagaha完成。
+项目程序主逻辑及打包发布和resnet的训练由@Jyunmau完成。
+自建模型设计及训练由@cagaha完成。
