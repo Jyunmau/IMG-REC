@@ -77,13 +77,19 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
     def load_file(self):
         """槽函数，打开单个图片文件识别并弹窗反馈"""
         fname, _ = QFileDialog.getOpenFileName(self, '选择图片', 'c:\\', 'Image files(*.jpg *.gif *.png)')
-        qimage = QImage(fname)
-        self.sig_res_wid.show()
-        self.sig_res_wid.image_predict(qimage)
+        if fname == '':
+            return
+        else:
+            qimage = QImage(fname)
+            self.sig_res_wid.show()
+            self.sig_res_wid.image_predict(qimage)
 
     def load_path(self):
         """槽函数，打开图片文件夹识别并弹窗反馈"""
         dir_path = QFileDialog.getExistingDirectory(self, '选择图片', 'c:\\')
-        self.img_rec.set_images_path(dir_path)
-        self.res_wid.show()
-        self.res_wid.image_predict()
+        if dir_path == '':
+            return
+        else:
+            self.img_rec.set_images_path(dir_path)
+            self.res_wid.show()
+            self.res_wid.image_predict()
