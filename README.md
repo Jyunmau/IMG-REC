@@ -15,7 +15,10 @@
 ## 识别模型说明
 模型脚本现有两个（Jupyter Notebook编写），`Keras_Cifar_CNN_Introduce.ipynb`是自行设计搭建的CNN网络，包含简单的3个卷积层、池化层和全连接层。`Keras_Cifar_ResNet.ipynb`是Kares官网上提供的ResNet程序，包含V1和V2两个版本，默认是V1。
 
-当前得到的模型文件`cifar10_ResNet20v1_model.045.h5`，是`Keras_Cifar_ResNet.ipynb`脚本采用Cifar10数据集在Google Colab上进行训练（Python3&GPU加速），迭代50个epoch，择取验证集最佳的一次（第45次，val_acc=85.65%），训练过程约45分钟。
+当前得到的模型文件`cifar10_ResNet20v1_model.045.h5`，是`Keras_Cifar_ResNet.ipynb`脚本采用Cifar10数据集在Google Colab上进行训练（Python3&GPU加速），迭代50个epoch，择取验证集最佳的一次（第45次，val_acc=85.65%），训练过程约45分钟。、
+
+**还！有！一！颗！练！了！4！个！钟！的！丹！test_acc！有！91%！但！是！colab！连！不！上！了！**
+- 嘤嘤嘤嘤嘤
 
 ## 使用说明
 - 运行根目录下的`main.py`
