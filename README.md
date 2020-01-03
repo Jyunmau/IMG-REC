@@ -89,7 +89,7 @@ crosstab:
 | 8	| 32	| 13	| 13	| 17	| 8	| 2	| 6	| 3	| 898	| 8 |
 | 9	| 18	| 60	| 6	| 23	| 4	| 1	| 10	| 4	| 13	| 861 |
 
-当前得到的效果较优的模型文件`cifar10_ResNet29v1_model.068.h5`，是`Keras_Cifar_ResNet.ipynb`脚本采用Cifar10数据集在Google Colab上进行训练（Python3&GPU加速），迭代70个epoch，择取验证集最佳的一次（第68次，val_acc=85.65%），训练过程约1小时。
+当前得到的效果较优的模型文件`cifar10_ResNet29v2_model.068.h5`，是`Keras_Cifar_ResNet.ipynb`脚本采用Cifar10数据集在Google Colab上进行训练（Python3&GPU加速），迭代70个epoch，择取验证集最佳的一次（第68次，val_acc=85.65%），训练过程约1小时。
 
 ## 使用说明
 - 安装环境依赖
