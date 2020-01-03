@@ -20,6 +20,13 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
+         <widget class="QPushButton" name="chg_mod_Button">
+          <property name="text">
+           <string>更改模型</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="loadButton">
           <property name="text">
            <string>加载本地图片</string>

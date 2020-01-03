@@ -11,8 +11,8 @@ from Core.SingleResultWid import SingleResultWid
 
 # _*_ coding:utf-8 _*_
 
-#   @Version : 1.0.0
-#   @Time    : 2020/01/01 14:44
+#   @Version : 1.1.0
+#   @Time    : 2020/01/03 14:50
 #   @Author  : Jyunmau Chan
 #   @File    : CameraMainWin.py
 
@@ -33,7 +33,6 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
         self.cameraOpened = False  # 设置相机打开状态为未打开
         # 设置取景器分辨率
         view_finder_settings = QCameraViewfinderSettings()
-        # viewFinderSettings.setResolution(800, 600)
         self.camera.setViewfinderSettings(view_finder_settings)
         # 初始化取景器
         self.viewCamera = QtMultimediaWidgets.QCameraViewfinder(self)
@@ -48,6 +47,7 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
         self.captureButton.clicked.connect(self.take_pic)
         self.loadButton.clicked.connect(self.load_file)
         self.reconitionButton.clicked.connect(self.load_path)
+        self.chg_mod_Button.clicked.connect(self.change_model)
 
     def switch_camera(self):
         """槽函数，开关摄像头"""
@@ -76,20 +76,28 @@ class CameraMainWin(QtWidgets.QMainWindow, ui_cameraWin.Ui_MainWindow):
 
     def load_file(self):
         """槽函数，打开单个图片文件识别并弹窗反馈"""
-        fname, _ = QFileDialog.getOpenFileName(self, '选择图片', 'c:\\', 'Image files(*.jpg *.gif *.png)')
-        if fname == '':
+        img_path, _ = QFileDialog.getOpenFileName(self, '选择图片', 'Images', 'Image files(*.jpg *.gif *.png)')
+        if img_path == '':
             return
         else:
-            qimage = QImage(fname)
+            q_image = QImage(img_path)
             self.sig_res_wid.show()
-            self.sig_res_wid.image_predict(qimage)
+            self.sig_res_wid.image_predict(q_image)
 
     def load_path(self):
         """槽函数，打开图片文件夹识别并弹窗反馈"""
-        dir_path = QFileDialog.getExistingDirectory(self, '选择图片', 'c:\\')
+        dir_path = QFileDialog.getExistingDirectory(self, '选择图片', 'Images')
         if dir_path == '':
             return
         else:
             self.img_rec.set_images_path(dir_path)
             self.res_wid.show()
             self.res_wid.image_predict()
+
+    def change_model(self):
+        """槽函数，打开模型文件夹识别并弹窗反馈"""
+        mod_path, _ = QFileDialog.getOpenFileName(self, '选择模型文件', 'Models/')
+        if mod_path == '':
+            return
+        else:
+            self.img_rec.change_model(mod_path)

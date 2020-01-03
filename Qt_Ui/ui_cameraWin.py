@@ -28,6 +28,11 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.chg_mod_Button = QPushButton(self.centralwidget)
+        self.chg_mod_Button.setObjectName(u"chg_mod_Button")
+
+        self.horizontalLayout.addWidget(self.chg_mod_Button)
+
         self.loadButton = QPushButton(self.centralwidget)
         self.loadButton.setObjectName(u"loadButton")
 
@@ -87,6 +92,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u57fa\u4e8e\u6df1\u5ea6\u795e\u7ecf\u7f51\u7edc\u7684\u56fe\u7247\u8bc6\u522b\u7a0b\u5e8f", None))
+        self.chg_mod_Button.setText(QCoreApplication.translate("MainWindow", u"\u66f4\u6539\u6a21\u578b", None))
         self.loadButton.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u8f7d\u672c\u5730\u56fe\u7247", None))
         self.reconitionButton.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u8f7d\u672c\u5730\u56fe\u7247\u6587\u4ef6\u5939", None))
         self.captureButton.setText(QCoreApplication.translate("MainWindow", u"\u62cd\u7167", None))

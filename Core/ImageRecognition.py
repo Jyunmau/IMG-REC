@@ -5,17 +5,14 @@ import glob
 
 # _*_ coding:utf-8 _*_
 
-#   @Version : 1.0.0
-#   @Time    : 2020/01/01 15:26
+#   @Version : 1.1.0
+#   @Time    : 2020/01/03 14:52
 #   @Author  : Jyunmau Chan
 #   @File    : ImageRecognition.py
 
-# ToDo 可选择加载不同模型
 
-# 模型文件存放路径
-model_path = "Models/cifar10_ResNet20v1_model.045.h5"
-# model_path = "Models/cifar10_ResNet29v2_model.022.h5"
-# model_path = "Models/cifar100_ResNet20v1_model.155.h5"
+# 默认加载模型文件存放路径
+model_path = "Models/cifar10_ResNet29v2_model.068.h5"
 
 
 class ImageRecognition(object):
@@ -26,25 +23,11 @@ class ImageRecognition(object):
         # 模型可识别的类别（按序）
         self.category = ["airplane", "automobile", "bird", "cat",
                          "deer", "dog", "frog", "horse", "ship", "truck"]
-        # 细分类型： [b'apple', b'aquarium_fish', b'baby', b'bear', b'beaver', b'bed', b'bee', b'beetle', b'bicycle',
-        #        b'bottle', b'bowl', b'boy', b'bridge', b'bus', b'butterfly', b'camel', b'can', b'castle', b'caterpillar',
-        #        b'cattle', b'chair', b'chimpanzee', b'clock', b'cloud', b'cockroach', b'couch', b'crab', b'crocodile',
-        #        b'cup', b'dinosaur', b'dolphin', b'elephant', b'flatfish', b'forest', b'fox', b'girl', b'hamster',
-        #        b'house', b'kangaroo', b'keyboard', b'lamp', b'lawn_mower', b'leopard', b'lion', b'lizard', b'lobster',
-        #        b'man', b'maple_tree', b'motorcycle', b'mountain', b'mouse', b'mushroom', b'oak_tree', b'orange',
-        #        b'orchid', b'otter', b'palm_tree', b'pear', b'pickup_truck', b'pine_tree', b'plain', b'plate', b'poppy',
-        #        b'porcupine', b'possum', b'rabbit', b'raccoon', b'ray', b'road', b'rocket', b'rose', b'sea', b'seal',
-        #        b'shark', b'shrew', b'skunk', b'skyscraper', b'snail', b'snake', b'spider', b'squirrel', b'streetcar',
-        #        b'sunflower', b'sweet_pepper', b'table', b'tank', b'telephone', b'television', b'tiger', b'tractor',
-        #        b'train', b'trout', b'tulip', b'turtle', b'wardrobe', b'whale', b'willow_tree', b'wolf', b'woman',
-        #        b'worm']
-        # 大类型： [b'aquatic_mammals', b'fish', b'flowers', b'food_containers', b'fruit_and_vegetables',
-        #       b'household_electrical_devices', b'household_furniture', b'insects', b'large_carnivores',
-        #       b'large_man-made_outdoor_things', b'large_natural_outdoor_scenes', b'large_omnivores_and_herbivores',
-        #       b'medium_mammals', b'non-insect_invertebrates', b'people', b'reptiles', b'small_mammals', b'trees',
-        #       b'vehicles_1', b'vehicles_2']
         # 图片文件生成器
         self.image_it = None
+
+    def change_model(self, path):
+        self.model = keras.models.load_model(path)
 
     def image_predict(self, img):
         """
@@ -90,7 +73,11 @@ class ImageRecognition(object):
         return str(self.category[cate_index[0]]), str(np.max(y, axis=1)), image_path
 
     def _qimg2mat_format(self, img):
-        """将QImage图片转换成cv的mat并格式化"""
+        """
+        将QImage图片转换成cv的mat并格式化
+        :param img: QImage图片
+        :return: cv::mat图片
+        """
         ptr = img.constBits()
         # QImage是四通道的RGBA8888（多一个alpha透明度通道）
         mat = np.array(ptr).reshape((img.height(), img.width(), 4))
